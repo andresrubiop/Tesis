@@ -16,7 +16,7 @@ namespace TesisChat
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmChat());
+            Application.Run(frmChat.GetInstance());
         }
     }
 }

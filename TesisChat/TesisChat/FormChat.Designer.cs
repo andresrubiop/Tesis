@@ -85,6 +85,7 @@
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // conexiónToolStripMenuItem
             // 
@@ -271,7 +272,7 @@
         private System.Windows.Forms.ToolStripMenuItem bestEffortToolStripMenuItem3;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.ListBox lsbParticipants;
-        private System.Windows.Forms.ListView lsvHistory;
+        public System.Windows.Forms.ListView lsvHistory;
     }
 }
 
