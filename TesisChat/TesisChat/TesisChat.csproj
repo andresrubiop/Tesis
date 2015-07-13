@@ -32,28 +32,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging">
+    <Reference Include="Common.Logging, Version=3.1.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Source\Repos\DOOP.ec\DDS-RTPS\ChatClient\bin\Debug\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging.Core">
+    <Reference Include="Common.Logging.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Source\Repos\DOOP.ec\DDS-RTPS\ChatClient\bin\Debug\Common.Logging.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DDS">
+    <Reference Include="DDS, Version=0.0.5615.37216, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Source\Repos\DOOP.ec\DDS-RTPS\ChatClient\bin\Debug\DDS.dll</HintPath>
     </Reference>
     <Reference Include="Doopec">
       <HintPath>..\..\..\..\Source\Repos\DOOP.ec\DDS-RTPS\ChatClient\bin\Debug\Doopec.dll</HintPath>
     </Reference>
-    <Reference Include="DoopecSerializer">
+    <Reference Include="DoopecSerializer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Source\Repos\DOOP.ec\DDS-RTPS\ChatClient\bin\Debug\DoopecSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
+    <Reference Include="log4net, Version=1.2.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Source\Repos\DOOP.ec\DDS-RTPS\ChatClient\bin\Debug\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Mina.NET">
+    <Reference Include="Mina.NET, Version=2.0.10.0, Culture=neutral, PublicKeyToken=bc4dde96e5154fe5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Source\Repos\DOOP.ec\DDS-RTPS\ChatClient\bin\Debug\Mina.NET.dll</HintPath>
     </Reference>
-    <Reference Include="RTPS">
+    <Reference Include="RTPS, Version=0.0.5617.19928, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Source\Repos\DOOP.ec\DDS-RTPS\ChatClient\bin\Debug\RTPS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
