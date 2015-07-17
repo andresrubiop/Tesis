@@ -295,9 +295,41 @@ namespace TesisChat
         
         }
 
+       
+
+       
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dp.Close();
+        }
+
+        private void txtMessage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMessage_Enter(object sender, EventArgs e)
+        {
+            
+                
+            
+        }
+
+        private void txtMessage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                //aqui codigo
+                String msg = txtMessage.Text;
+                ChatMessage datas = new ChatMessage(msg);
+                //Console.WriteLine("Sending data:\"{0}\"", data.Value);
+                dw.Write(datas);
+                txtMessage.Clear();
+                //dp.Close();
+                txtMessage.Focus();
+            
+                //aqui codigo
+            }
         }
 
         

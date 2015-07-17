@@ -56,10 +56,12 @@
             // txtMessage
             // 
             this.txtMessage.Location = new System.Drawing.Point(12, 237);
-            this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(369, 52);
+            this.txtMessage.Size = new System.Drawing.Size(369, 20);
             this.txtMessage.TabIndex = 0;
+            this.txtMessage.TextChanged += new System.EventHandler(this.txtMessage_TextChanged);
+            this.txtMessage.Enter += new System.EventHandler(this.txtMessage_Enter);
+            this.txtMessage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMessage_KeyPress);
             // 
             // mnsMenu
             // 
