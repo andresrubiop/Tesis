@@ -228,6 +228,7 @@
             this.lsvHistory.Size = new System.Drawing.Size(369, 173);
             this.lsvHistory.TabIndex = 5;
             this.lsvHistory.UseCompatibleStateImageBehavior = false;
+            this.lsvHistory.View = System.Windows.Forms.View.List;
             // 
             // frmChat
             // 

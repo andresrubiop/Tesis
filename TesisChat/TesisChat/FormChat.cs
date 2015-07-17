@@ -39,8 +39,9 @@ namespace TesisChat
         delegate  void Rec(string message);
         static string data;
         private static frmChat formChat = new frmChat();
-        Thread t;
-        string aux;
+       
+        public BackgroundWorker backgroundWorker1;
+        public BackgroundWorker backgroundWorker2;
         
         internal static frmChat GetInstance()
         {
@@ -54,24 +55,49 @@ namespace TesisChat
         public frmChat()
         {
             InitializeComponent();
-        
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+
+            this.backgroundWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker2_RunWorkerCompleted);
+            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
           
             
             
         }
-       
-     
-        public static void  Receiver(string msg)
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-
-           data = msg;
-
-            
-            
-         
-           
+            ChatMessage msg = e.Argument as ChatMessage;
+            e.Result = msg;
+        }
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ChatMessage msg = e.Result as ChatMessage;
+            if (msg != null && msg.Values != null)
+            {
+                this.lsvHistory.Items.Add("Received data: " + msg.Values);
+            }
         }
 
+        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ChatMessage msg = e.Argument as ChatMessage;
+            e.Result = msg;
+        }
+        private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ChatMessage msg = e.Result as ChatMessage;
+            if (msg != null && msg.Values != null)
+            {
+                this.lsvHistory.Items.Add("Received data: " + msg.Values);
+            }
+        }
+     
+        
         
 
         
@@ -81,63 +107,16 @@ namespace TesisChat
            
             this.ShowMyDialogBox();
             this.InitializeDDS();
-            t = new Thread(Actualice);
-            t.Start();
-
-            
-                
-           
-               
-           
-          
-            
+                 
+             
             
         }
-        private void Actualice()
-        {
-            loop();
-
-            Actualice();
-            
-           
-            
-            
-
-
-
-
-        }
-        private void loop()
-        {
-            while (true)
-            {
-
-                if(aux!=data)
-                {
-                    break;
-                }
-
-
-            }
-            SetText(data);
-            aux = data;
-        }
+     
+      
 
        
         
-        delegate void setTextCallback(string text);
-        private void SetText(string text)
-        {
-            if (lsvHistory.InvokeRequired)
-            {
-                setTextCallback d = new setTextCallback(SetText);
-                this.Invoke(d, new object[] { text });
-            }
-            else
-            {
-                this.lsvHistory.Items.Add(text); 
-            }
-        }
+      
         
        
 
@@ -158,7 +137,7 @@ namespace TesisChat
             // Create the subscriber
             sub = dp.CreateSubscriber();
             // Create a Listener for the publishing data
-            ls = new MyListener();
+            ls = new MyListener(backgroundWorker1,backgroundWorker2);
             // Create the DataReader using the topic, politics of QoS for DataReader and implemented listener
             dr = sub.CreateDataReader<ChatMessage>(tp,
                                                                             sub.GetDefaultDataReaderQos(),
@@ -213,11 +192,17 @@ namespace TesisChat
         {
             
         }
-        class MyListener : DataReaderAdapter<ChatMessage>
+         class MyListener : DataReaderAdapter<ChatMessage>
         {
-            DataReader<ChatMessage> dr;
-            private SampleIterator<ChatMessage> It;
-            ChatMessage dt;
+            public BackgroundWorker backgroundWorker1;
+            public BackgroundWorker backgroundWorker2;
+
+            public MyListener(BackgroundWorker backgroundWorker1, BackgroundWorker backgroundWorker2)
+            {
+                this.backgroundWorker1 = backgroundWorker1;
+                this.backgroundWorker2 = backgroundWorker2;
+            }
+          
             
          
 
@@ -233,10 +218,14 @@ namespace TesisChat
             public override void OnDataAvailable(DataAvailableStatus<ChatMessage> status)
             {
                 
+                  DataReader<ChatMessage> dr;
+             SampleIterator<ChatMessage> It;
+            ChatMessage dt;
                 // Obtain the source of DataReader 
                 dr= status.GetSource();
                 // Obtain the stack of messages published
                 It = dr.Take();
+                
               
                 // Iterator of the list of messages, to present it in console
                 foreach (Sample<ChatMessage> smp in It)
@@ -247,9 +236,21 @@ namespace TesisChat
                     // Data accessible from Sample; null if invalid:
                     
                     dt = smp.GetData();
+
+                    if (backgroundWorker1.IsBusy)
+                    {
+                        BackgroundLoop(dt);                  
+                    }
+                    else
+                    {
+                        this.backgroundWorker1.RunWorkerAsync(dt);
+
+                    }
+                 
+                   
+
                     
-                    Rec handler = new Rec(Receiver);
-                    handler(dt.Value+"  "+smp.GetHashCode().ToString());
+               
                     
                   
                     
@@ -257,6 +258,25 @@ namespace TesisChat
                   
                 }
             }
+             private void BackgroundLoop(ChatMessage dt)
+             {
+                 if (backgroundWorker2.IsBusy)
+                 {
+                     if(backgroundWorker1.IsBusy )
+                     {
+                         BackgroundLoop(dt);
+                     }
+                     else
+                     {
+                         this.backgroundWorker1.RunWorkerAsync(dt);
+
+                     }
+                 }
+                 else
+                 {
+                     this.backgroundWorker2.RunWorkerAsync(dt);
+                 }
+             }
             
             
         }
@@ -269,6 +289,7 @@ namespace TesisChat
             dw.Write(datas);
             txtMessage.Clear();
             //dp.Close();
+            txtMessage.Focus();
            
             
         

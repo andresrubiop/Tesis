@@ -8,21 +8,21 @@ namespace TesisChat
 {
     class ChatMessage
     {
-        private readonly string value;
+        private readonly string values;
 
-        public ChatMessage(string value)
+        public ChatMessage(string values)
         {
-            this.value = value;
+            this.values = values;
         }
 
-        public string Value
+        public string Values
         {
-            get { return this.value; }
+            get { return this.values; }
         }
 
         public override string ToString()
         {
-            return this.value;
+            return this.values;
         }
     }
 }
