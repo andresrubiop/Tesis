@@ -32,6 +32,7 @@ namespace TesisChat
         Publisher pub;
         DataReader<ChatMessage> dr;
         DataReaderListener<ChatMessage> ls;
+        DataWriterListener<ChatMessage> ls2;
         DomainParticipantFactory factory;
         DomainParticipant dp;
         Topic<ChatMessage> tp ;
@@ -138,6 +139,7 @@ namespace TesisChat
             sub = dp.CreateSubscriber();
             // Create a Listener for the publishing data
             ls = new MyListener(backgroundWorker1,backgroundWorker2);
+            ls2 = new MyListener2();
             // Create the DataReader using the topic, politics of QoS for DataReader and implemented listener
             dr = sub.CreateDataReader<ChatMessage>(tp,
                                                                             sub.GetDefaultDataReaderQos(),
@@ -149,8 +151,12 @@ namespace TesisChat
             // Create the publisher
             pub = dp.CreatePublisher();
             // Create the DataWriter using the topic specified
-            dw = pub.CreateDataWriter(tp);
+            //dw = pub.CreateDataWriter(tp);
 
+            dw = pub.CreateDataWriter<ChatMessage>(tp,
+                                                                            pub.GetDefaultDataWriterQos(),
+                                                                            ls2,
+                                                                            null);
 
          
 
@@ -313,6 +319,15 @@ namespace TesisChat
             
                 
             
+        }
+        private class MyListener2 : DataWriterAdapter<ChatMessage>
+        {
+            
+            /// Method is called when a new message arrives from the Publisher
+            /// </summary>
+           
+            /// <param name="status">get data avaliable</param>
+           
         }
 
         private void txtMessage_KeyPress(object sender, KeyPressEventArgs e)
