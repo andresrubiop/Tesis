@@ -35,7 +35,7 @@
             this.conexiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSend = new System.Windows.Forms.Button();
             this.lsbParticipants = new System.Windows.Forms.ListBox();
-            this.lsvHistory = new System.Windows.Forms.ListView();
+            this.lsvHistory = new System.Windows.Forms.ListBox();
             this.mnsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,12 +102,11 @@
             // 
             // lsvHistory
             // 
+            this.lsvHistory.FormattingEnabled = true;
             this.lsvHistory.Location = new System.Drawing.Point(12, 41);
             this.lsvHistory.Name = "lsvHistory";
-            this.lsvHistory.Size = new System.Drawing.Size(369, 173);
+            this.lsvHistory.Size = new System.Drawing.Size(352, 173);
             this.lsvHistory.TabIndex = 5;
-            this.lsvHistory.UseCompatibleStateImageBehavior = false;
-            this.lsvHistory.View = System.Windows.Forms.View.List;
             // 
             // frmChat
             // 
@@ -138,7 +137,7 @@
         private System.Windows.Forms.ToolStripMenuItem conexiónToolStripMenuItem;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.ListBox lsbParticipants;
-        public System.Windows.Forms.ListView lsvHistory;
+        private System.Windows.Forms.ListBox lsvHistory;
     }
 }
 
