@@ -81,6 +81,7 @@ namespace TesisChat
             if (msg != null && msg.Values != null)
             {
                 this.lsvHistory.Items.Add("Received data: " + msg.Values);
+                this.lsvHistory.TopIndex = lsvHistory.Items.Count - 1;
             }
         }
 
