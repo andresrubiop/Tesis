@@ -39,5 +39,13 @@ namespace TesisChat
                 return txtId;
             }
         }
+
+        private void txtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                this.Close();
+            }
+        }
     }
 }

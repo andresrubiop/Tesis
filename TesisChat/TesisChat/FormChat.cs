@@ -306,7 +306,16 @@ namespace TesisChat
        
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dp.Close();
+            try
+            {
+                dp.Close();
+                formChat.Close();
+            }
+            catch
+            {
+                formChat.Close();
+            }
+            
         }
 
         private void txtMessage_TextChanged(object sender, EventArgs e)
@@ -345,6 +354,13 @@ namespace TesisChat
             
                 //aqui codigo
             }
+        }
+
+        private void conexiónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ShowMyDialogBox();
+            this.InitializeDDS();
+                 
         }
 
         
