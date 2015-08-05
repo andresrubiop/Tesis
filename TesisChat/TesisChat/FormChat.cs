@@ -146,8 +146,8 @@ namespace TesisChat
                                                                             sub.GetDefaultDataReaderQos(),
                                                                             ls,
                                                                             null);
-          
             
+           
             
             // Create the publisher
             pub = dp.CreatePublisher();
@@ -158,7 +158,7 @@ namespace TesisChat
                                                                             pub.GetDefaultDataWriterQos(),
                                                                             ls2,
                                                                             null);
-
+            
          
 
         }
@@ -199,6 +199,7 @@ namespace TesisChat
         {
             
         }
+       
          class MyListener : DataReaderAdapter<ChatMessage>
         {
             public BackgroundWorker backgroundWorker1;
@@ -210,20 +211,14 @@ namespace TesisChat
                 this.backgroundWorker2 = backgroundWorker2;
             }
           
-            
-         
-
-             
-            
-            
-            
-           
+          
             /// <summary>
             /// Method is called when a new message arrives from the Publisher
             /// </summary>
             /// <param name="status">get data avaliable</param>
             public override void OnDataAvailable(DataAvailableStatus<ChatMessage> status)
             {
+                
                 
                   DataReader<ChatMessage> dr;
              SampleIterator<ChatMessage> It;
@@ -362,6 +357,12 @@ namespace TesisChat
             this.ShowMyDialogBox();
             this.InitializeDDS();
                  
+        }
+
+        private void btnactualizar_Click(object sender, EventArgs e)
+        {
+            lsbParticipants.Items.Add(factory.LookupParticipant(0));
+            lsbParticipants.Items.Add(factory.LookupParticipant(1));
         }
 
         
