@@ -33,11 +33,9 @@
             this.inicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conexiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnactualizar = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSend = new System.Windows.Forms.Button();
-            this.lsbParticipants = new System.Windows.Forms.ListBox();
             this.lsvHistory = new System.Windows.Forms.ListBox();
-            this.lblCache = new System.Windows.Forms.Label();
+            this.btnSend3 = new System.Windows.Forms.Button();
             this.mnsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,11 +53,10 @@
             // 
             this.mnsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inicioToolStripMenuItem,
-            this.conexiónToolStripMenuItem,
-            this.btnactualizar});
+            this.conexiónToolStripMenuItem});
             this.mnsMenu.Location = new System.Drawing.Point(0, 0);
             this.mnsMenu.Name = "mnsMenu";
-            this.mnsMenu.Size = new System.Drawing.Size(593, 24);
+            this.mnsMenu.Size = new System.Drawing.Size(534, 24);
             this.mnsMenu.TabIndex = 1;
             this.mnsMenu.Text = "menuStrip1";
             // 
@@ -74,7 +71,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -84,13 +81,6 @@
             this.conexiónToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.conexiónToolStripMenuItem.Text = "Conexión";
             this.conexiónToolStripMenuItem.Click += new System.EventHandler(this.conexiónToolStripMenuItem_Click);
-            // 
-            // btnactualizar
-            // 
-            this.btnactualizar.Name = "btnactualizar";
-            this.btnactualizar.Size = new System.Drawing.Size(71, 20);
-            this.btnactualizar.Text = "Actualizar";
-            this.btnactualizar.Click += new System.EventHandler(this.btnactualizar_Click);
             // 
             // btnSend
             // 
@@ -102,39 +92,31 @@
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
-            // lsbParticipants
-            // 
-            this.lsbParticipants.FormattingEnabled = true;
-            this.lsbParticipants.Location = new System.Drawing.Point(388, 41);
-            this.lsbParticipants.Name = "lsbParticipants";
-            this.lsbParticipants.Size = new System.Drawing.Size(120, 173);
-            this.lsbParticipants.TabIndex = 4;
-            // 
             // lsvHistory
             // 
             this.lsvHistory.FormattingEnabled = true;
             this.lsvHistory.Location = new System.Drawing.Point(12, 41);
             this.lsvHistory.Name = "lsvHistory";
-            this.lsvHistory.Size = new System.Drawing.Size(352, 173);
+            this.lsvHistory.Size = new System.Drawing.Size(493, 173);
             this.lsvHistory.TabIndex = 5;
             // 
-            // lblCache
+            // btnSend3
             // 
-            this.lblCache.AutoSize = true;
-            this.lblCache.Location = new System.Drawing.Point(515, 59);
-            this.lblCache.Name = "lblCache";
-            this.lblCache.Size = new System.Drawing.Size(35, 13);
-            this.lblCache.TabIndex = 6;
-            this.lblCache.Text = "label1";
+            this.btnSend3.Location = new System.Drawing.Point(388, 295);
+            this.btnSend3.Name = "btnSend3";
+            this.btnSend3.Size = new System.Drawing.Size(77, 32);
+            this.btnSend3.TabIndex = 7;
+            this.btnSend3.Text = "Send3";
+            this.btnSend3.UseVisualStyleBackColor = true;
+            this.btnSend3.Click += new System.EventHandler(this.btnSend3_Click);
             // 
             // frmChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 323);
-            this.Controls.Add(this.lblCache);
+            this.ClientSize = new System.Drawing.Size(534, 349);
+            this.Controls.Add(this.btnSend3);
             this.Controls.Add(this.lsvHistory);
-            this.Controls.Add(this.lsbParticipants);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.mnsMenu);
@@ -156,10 +138,8 @@
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem conexiónToolStripMenuItem;
         private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.ListBox lsbParticipants;
         private System.Windows.Forms.ListBox lsvHistory;
-        private System.Windows.Forms.ToolStripMenuItem btnactualizar;
-        private System.Windows.Forms.Label lblCache;
+        private System.Windows.Forms.Button btnSend3;
     }
 }
 

@@ -104,7 +104,7 @@ namespace TesisChat
             ChatMessage msg = e.Result as ChatMessage;
             if (msg != null && msg.Values != null)
             {
-                this.lsvHistory.Items.Add("Received data: " + msg.Values);
+                this.lsvHistory.Items.Add(msg.Values);
                 this.lsvHistory.TopIndex = lsvHistory.Items.Count - 1;
             }
         }
@@ -119,7 +119,7 @@ namespace TesisChat
             ChatMessage msg = e.Result as ChatMessage;
             if (msg != null && msg.Values != null)
             {
-                this.lsvHistory.Items.Add("Received data: " + msg.Values);
+                this.lsvHistory.Items.Add(msg.Values);
             }
         }
         private void backgroundWorker3_DoWork(object sender, DoWorkEventArgs e)
@@ -132,7 +132,7 @@ namespace TesisChat
             ChatMessage msg = e.Result as ChatMessage;
             if (msg != null && msg.Values != null)
             {
-                this.lsvHistory.Items.Add("Received data: " + msg.Values);
+                this.lsvHistory.Items.Add(msg.Values);
             }
         }
         private void backgroundWorker4_DoWork(object sender, DoWorkEventArgs e)
@@ -146,7 +146,7 @@ namespace TesisChat
             int cont = (int)e.Result;
             if (cont != null )
             {
-                this.lblCache.Text = cont.ToString();
+                //this.lblCache.Text = cont.ToString();
                 //this.lsvHistory.Items.Add("Received data: " + msg.Values);
             }
         }
@@ -161,7 +161,7 @@ namespace TesisChat
             int cont = (int)e.Result;
             if (cont != null)
             {
-                this.lblCache.Text = cont.ToString();
+                //this.lblCache.Text = cont.ToString();
                 //this.lsvHistory.Items.Add("Received data: " + msg.Values);
             }
         }
@@ -176,7 +176,7 @@ namespace TesisChat
             int cont = (int)e.Result;
             if (cont != null)
             {
-                this.lblCache.Text = cont.ToString();
+                //this.lblCache.Text = cont.ToString();
                 //this.lsvHistory.Items.Add("Received data: " + msg.Values);
             }
         }
@@ -208,10 +208,11 @@ namespace TesisChat
         private void InitializeDDS()
         {
             
-            string id = usuario.Id;
+            //string id = usuario.Id;
+            string id = "0";
             int.TryParse(id, out domainId);
-            
 
+            
             // Create the DomainFactory
             factory = DomainParticipantFactory.GetInstance(Bootstrap.CreateInstance());
             // Create the DomainParticipant with reference to the configuration file with the domain ID
@@ -231,8 +232,8 @@ namespace TesisChat
                                                                             ls,
                                                                             null);
             
-           
             
+                       
             // Create the publisher
             pub = dp.CreatePublisher();
             // Create the DataWriter using the topic specified
@@ -242,6 +243,10 @@ namespace TesisChat
                                                                             pub.GetDefaultDataWriterQos(),
                                                                             ls2,
                                                                             null);
+
+            
+
+           
             
          
 
@@ -256,6 +261,7 @@ namespace TesisChat
             {
                 this.usuario.UserName = formId.TxtId.Text;
                 this.usuario.Id = formId.TxtId.Text;
+                
             }
             else
             {
@@ -284,6 +290,7 @@ namespace TesisChat
             
         }
        
+        
          class MyListener : DataReaderAdapter<ChatMessage>
         {
             public BackgroundWorker backgroundWorker1;
@@ -293,7 +300,8 @@ namespace TesisChat
             public BackgroundWorker backgroundWorker5;
             public BackgroundWorker backgroundWorker6;
             int cache = 0;
-            public MyListener(BackgroundWorker backgroundWorker1, BackgroundWorker backgroundWorker2, BackgroundWorker backgroundWorker3, BackgroundWorker backgroundWorker4, BackgroundWorker backgroundWorker5, BackgroundWorker backgroundWorker6)
+            public MyListener(BackgroundWorker backgroundWorker1,
+                BackgroundWorker backgroundWorker2, BackgroundWorker backgroundWorker3, BackgroundWorker backgroundWorker4, BackgroundWorker backgroundWorker5, BackgroundWorker backgroundWorker6)
             {
                 this.backgroundWorker1 = backgroundWorker1;
                 this.backgroundWorker2 = backgroundWorker2;
@@ -303,7 +311,8 @@ namespace TesisChat
                 this.backgroundWorker6 = backgroundWorker6;
             }
           
-          
+            
+           
             /// <summary>
             /// Method is called when a new message arrives from the Publisher
             /// </summary>
@@ -312,14 +321,15 @@ namespace TesisChat
             {
                 
                 
-                  DataReader<ChatMessage> dr;
-             SampleIterator<ChatMessage> It;
-            ChatMessage dt;
+                DataReader<ChatMessage> dr;
+                SampleIterator<ChatMessage> It;
+                ChatMessage dt;
             
                 // Obtain the source of DataReader 
                 dr= status.GetSource();
                 // Obtain the stack of messages published
                 It = dr.Take();
+                
                 
               
                 // Iterator of the list of messages, to present it in console
@@ -399,7 +409,7 @@ namespace TesisChat
         private void btnSend_Click(object sender, EventArgs e)
         {
             String msg = txtMessage.Text;
-            ChatMessage datas = new ChatMessage(msg);
+            ChatMessage datas = new ChatMessage(usuario.Id+": "+ msg);
             //Console.WriteLine("Sending data:\"{0}\"", data.Value);
             dw.Write(datas);
             dw.Write(datas);
@@ -457,7 +467,7 @@ namespace TesisChat
             {
                 //aqui codigo
                 String msg = txtMessage.Text;
-                ChatMessage datas = new ChatMessage(msg);
+                ChatMessage datas = new ChatMessage(usuario.Id + ": " + msg);
                 //Console.WriteLine("Sending data:\"{0}\"", data.Value);
                 dw.Write(datas);
                 txtMessage.Clear();
@@ -475,17 +485,52 @@ namespace TesisChat
                  
         }
 
-        private void btnactualizar_Click(object sender, EventArgs e)
-        {
-            lsbParticipants.Items.Add(factory.LookupParticipant(0));
-            lsbParticipants.Items.Add(factory.LookupParticipant(1));
-        }
-
         
 
-      
-       
+        private void btnSend3_Click(object sender, EventArgs e)
+        {
+            String msga = "a";
+            ChatMessage datasa = new ChatMessage(msga);
 
-      
+            String msgb = "b";
+            ChatMessage datasb = new ChatMessage(msgb);
+
+            String msgc = "c";
+            ChatMessage datasc = new ChatMessage(msgc);
+
+            String msgd = "d";
+            ChatMessage datasd = new ChatMessage(msgd);
+
+            String msge = "e";
+            ChatMessage datase = new ChatMessage(msge);
+            //Console.WriteLine("Sending data:\"{0}\"", data.Value);
+            dw.Write(datasa);
+            dw.Write(datasb);
+            dw.Write(datasc);
+            
+            txtMessage.Clear();
+            //dp.Close();
+            txtMessage.Focus();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            
+
+          
+
+           
+            
+
+        }
+
+
+
+
+
+
+
+
+       
     }
 }
