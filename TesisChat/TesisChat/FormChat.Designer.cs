@@ -117,6 +117,7 @@
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.mnsMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MainMenuStrip = this.mnsMenu;
             this.Name = "frmChat";
             this.Text = "DDS-RTPS (Demo) Chat";
