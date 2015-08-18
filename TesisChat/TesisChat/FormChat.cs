@@ -60,6 +60,10 @@ namespace TesisChat
         public frmChat()
         {
             InitializeComponent();
+            desconexiónToolStripMenuItem.Enabled = false;
+            lsvHistory.Enabled = false;
+            btnSend.Enabled = false;
+            txtMessage.Enabled = false;
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
@@ -263,6 +267,11 @@ namespace TesisChat
                 this.usuario.Id = formId.TxtId.Text;
                 
             }
+            if ((int)Keys.Enter==13)
+            {
+                this.usuario.UserName = formId.TxtId.Text;
+                this.usuario.Id = formId.TxtId.Text;
+            }
             else
             {
                 this.usuario.UserName = "Cancelled";
@@ -411,8 +420,7 @@ namespace TesisChat
             String msg = txtMessage.Text;
             ChatMessage datas = new ChatMessage(usuario.Id+": "+ msg);
             //Console.WriteLine("Sending data:\"{0}\"", data.Value);
-            dw.Write(datas);
-            dw.Write(datas);
+           
             dw.Write(datas);
             
             txtMessage.Clear();
@@ -430,12 +438,31 @@ namespace TesisChat
         {
             try
             {
+                String msg = usuario.Id + " se ha desconectado";
+                ChatMessage datas = new ChatMessage(msg);
+
+                dw.Write(datas);
                 dp.Close();
                 formChat.Close();
             }
             catch
             {
-                formChat.Close();
+                try
+                {
+                    String msg = usuario.Id + " se ha desconectado";
+                    ChatMessage datas = new ChatMessage(msg);
+
+                    dw.Write(datas);
+                    formChat.Close();
+                }
+                catch
+                {
+                    formChat.Close();
+                }
+
+
+
+
             }
             
         }
@@ -480,8 +507,46 @@ namespace TesisChat
 
         private void conexiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.ShowMyDialogBox();
-            this.InitializeDDS();
+            try
+            {
+                dp.Close();
+                this.ShowMyDialogBox();
+                if(dp==null)
+                {
+                    this.InitializeDDS();
+                }
+               
+                String msg = usuario.Id + " se ha conectado";
+                ChatMessage datas = new ChatMessage(msg);
+
+                dw.Write(datas);
+
+                desconexiónToolStripMenuItem.Enabled = true;
+                conexiónToolStripMenuItem.Enabled = false;
+                lsvHistory.Enabled = true;
+                btnSend.Enabled = true;
+                txtMessage.Enabled = true;
+                txtMessage.Focus();
+            }
+            catch
+            {
+                this.ShowMyDialogBox();
+                this.InitializeDDS();
+                String msg = usuario.Id + " se ha conectado";
+                ChatMessage datas = new ChatMessage(msg);
+
+                dw.Write(datas);
+
+                desconexiónToolStripMenuItem.Enabled = true;
+                conexiónToolStripMenuItem.Enabled = false;
+                lsvHistory.Enabled = true;
+                btnSend.Enabled = true;
+                txtMessage.Enabled = true;
+                txtMessage.Focus();
+            }
+            
+
+         
                  
         }
 
@@ -522,6 +587,48 @@ namespace TesisChat
            
             
 
+        }
+
+        private void desconexiónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String msg = usuario.Id + " se ha desconectado";
+                ChatMessage datas = new ChatMessage(msg);
+
+                dw.Write(datas);
+                
+                
+
+                desconexiónToolStripMenuItem.Enabled = false;
+                conexiónToolStripMenuItem.Enabled = true ;
+                lsvHistory.Enabled = false ;
+                btnSend.Enabled = false ;
+                txtMessage.Enabled = false;
+                //dp.Close();
+                
+                
+                
+                
+                
+            }
+            catch
+            {
+                String msg = usuario.Id + " se ha desconectado";
+                ChatMessage datas = new ChatMessage(msg);
+
+                dw.Write(datas);
+                
+                
+
+                desconexiónToolStripMenuItem.Enabled = false;
+                conexiónToolStripMenuItem.Enabled = true;
+                lsvHistory.Enabled = false;
+                btnSend.Enabled = false;
+                txtMessage.Enabled = false;
+                //dp.Close();
+                
+            }
         }
 
 

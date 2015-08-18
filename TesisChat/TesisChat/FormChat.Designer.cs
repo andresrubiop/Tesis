@@ -35,7 +35,7 @@
             this.conexiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSend = new System.Windows.Forms.Button();
             this.lsvHistory = new System.Windows.Forms.ListBox();
-            this.btnSend3 = new System.Windows.Forms.Button();
+            this.desconexiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +53,8 @@
             // 
             this.mnsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inicioToolStripMenuItem,
-            this.conexiónToolStripMenuItem});
+            this.conexiónToolStripMenuItem,
+            this.desconexiónToolStripMenuItem});
             this.mnsMenu.Location = new System.Drawing.Point(0, 0);
             this.mnsMenu.Name = "mnsMenu";
             this.mnsMenu.Size = new System.Drawing.Size(534, 24);
@@ -71,7 +72,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -86,7 +87,7 @@
             // 
             this.btnSend.Location = new System.Drawing.Point(388, 237);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(120, 52);
+            this.btnSend.Size = new System.Drawing.Size(120, 20);
             this.btnSend.TabIndex = 2;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -100,22 +101,18 @@
             this.lsvHistory.Size = new System.Drawing.Size(493, 173);
             this.lsvHistory.TabIndex = 5;
             // 
-            // btnSend3
+            // desconexiónToolStripMenuItem
             // 
-            this.btnSend3.Location = new System.Drawing.Point(388, 295);
-            this.btnSend3.Name = "btnSend3";
-            this.btnSend3.Size = new System.Drawing.Size(77, 32);
-            this.btnSend3.TabIndex = 7;
-            this.btnSend3.Text = "Send3";
-            this.btnSend3.UseVisualStyleBackColor = true;
-            this.btnSend3.Click += new System.EventHandler(this.btnSend3_Click);
+            this.desconexiónToolStripMenuItem.Name = "desconexiónToolStripMenuItem";
+            this.desconexiónToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
+            this.desconexiónToolStripMenuItem.Text = "Desconexión";
+            this.desconexiónToolStripMenuItem.Click += new System.EventHandler(this.desconexiónToolStripMenuItem_Click);
             // 
             // frmChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 349);
-            this.Controls.Add(this.btnSend3);
+            this.ClientSize = new System.Drawing.Size(534, 291);
             this.Controls.Add(this.lsvHistory);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
@@ -139,7 +136,7 @@
         private System.Windows.Forms.ToolStripMenuItem conexiónToolStripMenuItem;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.ListBox lsvHistory;
-        private System.Windows.Forms.Button btnSend3;
+        private System.Windows.Forms.ToolStripMenuItem desconexiónToolStripMenuItem;
     }
 }
 
