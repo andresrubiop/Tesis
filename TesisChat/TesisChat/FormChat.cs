@@ -108,8 +108,11 @@ namespace TesisChat
             ChatMessage msg = e.Result as ChatMessage;
             if (msg != null && msg.Values != null)
             {
-                this.lsvHistory.Items.Add(msg.Values);
-                this.lsvHistory.TopIndex = lsvHistory.Items.Count - 1;
+                if (lsvHistory.Enabled == true)
+                {
+                    this.lsvHistory.Items.Add(msg.Values);
+                    this.lsvHistory.TopIndex = lsvHistory.Items.Count - 1;
+                }
             }
         }
 
@@ -123,7 +126,11 @@ namespace TesisChat
             ChatMessage msg = e.Result as ChatMessage;
             if (msg != null && msg.Values != null)
             {
-                this.lsvHistory.Items.Add(msg.Values);
+                if (lsvHistory.Enabled == true)
+                {
+                    this.lsvHistory.Items.Add(msg.Values);
+                    this.lsvHistory.TopIndex = lsvHistory.Items.Count - 1;
+                }
             }
         }
         private void backgroundWorker3_DoWork(object sender, DoWorkEventArgs e)
@@ -136,7 +143,12 @@ namespace TesisChat
             ChatMessage msg = e.Result as ChatMessage;
             if (msg != null && msg.Values != null)
             {
-                this.lsvHistory.Items.Add(msg.Values);
+                if(lsvHistory.Enabled==true)
+                {
+                    this.lsvHistory.Items.Add(msg.Values);
+                    this.lsvHistory.TopIndex = lsvHistory.Items.Count - 1;
+                }
+                
             }
         }
         private void backgroundWorker4_DoWork(object sender, DoWorkEventArgs e)
@@ -603,6 +615,8 @@ namespace TesisChat
                 desconexiónToolStripMenuItem.Enabled = false;
                 conexiónToolStripMenuItem.Enabled = true ;
                 lsvHistory.Enabled = false ;
+                
+               
                 btnSend.Enabled = false ;
                 txtMessage.Enabled = false;
                 //dp.Close();
